@@ -40,8 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'widget_tweaks',
+    'rest_framework',
+    'drf_yasg',
 
     'train.apps.TrainConfig',
+    'train_api.apps.TrainApiConfig',
 ]
 
 MIDDLEWARE = [

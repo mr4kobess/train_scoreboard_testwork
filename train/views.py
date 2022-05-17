@@ -4,18 +4,14 @@ from .forms import SearchTrainsForm, TrainForm
 
 
 def index(request):
-    if request.method == 'POST':
-        search_form = SearchTrainsForm(request.POST)
-
-        if search_form.is_valid():
-            # Фильтрация пустых значений формы, чтобы не фильтровать по пустым полям
-            _data = {key: value for key, value in search_form.cleaned_data.items() if value}
-            trains = Train.objects.filter(**_data)
-        else:
-            trains = Train.objects.all()
+    search_form = SearchTrainsForm(request.GET)
+    if search_form.is_valid():
+        # Фильтрация пустых значений формы, чтобы не фильтровать по пустым полям
+        _data = {key: value for key, value in search_form.cleaned_data.items() if value}
+        trains = Train.objects.filter(**_data)
     else:
-        search_form = SearchTrainsForm()
         trains = Train.objects.all()
+        search_form = SearchTrainsForm()
     return render(request, 'index.html', context={'trains': trains, 'search_form': search_form})
 
 

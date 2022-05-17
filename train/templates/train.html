@@ -1,23 +1,26 @@
 {% extends 'base.html' %}
 {% load widget_tweaks %}
 {% block content %}
-    <div class="container">
-        <form method="post">
+    <div class="row">
+        <form id="train_form" method="post">
             {% csrf_token %}
             {% for field in train_form %}
                 <div class="row p-3 w-50">
                     {% render_field field class="form-control" %}
                 </div>
             {% endfor %}
-            <div class="col pt-3">
-                <input class="btn btn-primary" type="submit" value="Сохранить">
-            </div>
         </form>
-        <div class=" text-right">
-            <form method="post" action="{% url 'train:delete-train-view' train.pk %}">
-                {% csrf_token %}
-                <input class="btn btn-danger" type="submit" value="Удалить">
-            </form>
+
+        <div class="row text-center w-50 pt-3">
+            <div class="col">
+                <input class="btn btn-primary" form='train_form' type="submit" value="Сохранить">
+            </div>
+            <div class="col">
+                <form method="post" action="{% url 'train:delete-train-view' train.pk %}">
+                    {% csrf_token %}
+                    <input class="btn btn-danger" type="submit" value="Удалить">
+                </form>
+            </div>
         </div>
     </div>
 {% endblock %}

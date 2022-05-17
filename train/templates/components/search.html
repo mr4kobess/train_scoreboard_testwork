@@ -1,6 +1,5 @@
 {% load widget_tweaks %}
-<form method="post">
-    {% csrf_token %}
+<form>
     <div class="row">
         <div class="col">
             {% render_field search_form.departure_city class="form-control" %}
