@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+    <h5 class="text-left p-3">Всего рейсов: {{ trains.count }}</h5>
+    <div>
+        {% include "components/search.html" %}
+    </div>
+    <br>
+    <div>
+        {% include "components/table.html" %}
+    </div>
+{% endblock %}

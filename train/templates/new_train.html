@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        {% for field in train_form %}
+            <div class="row p-3 w-50">
+                {% render_field field class="form-control" placeholder=field.label %}
+            </div>
+        {% endfor %}
+        <div class="col pt-3">
+            <input class="btn btn-primary" type="submit" value="Создать">
+        </div>
+    </form>
+{% endblock %}
